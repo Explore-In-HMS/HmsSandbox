@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,44 +39,49 @@ import com.genar.hmssandbox.huawei.baseapp.adapter.BaseViewPagerAdapter;
 import com.genar.hmssandbox.huawei.baseapp.fragment.HmsKitSearchFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.huawei.hms.mlsdk.text.MLText;
 
-public class MainActivityTab extends AppCompatActivity {
+public class MainActivityTab extends BaseActivity {
 
     TabLayout tabLayout;
     ViewPager2 viewPager;
     FragmentContainerView searchFragmentContainer;
     HmsKitSearchFragment searchFragment;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_tab);
-        setupToolbar();
-
+        //setContentView(R.layout.activity_main_tab);
+       // setupToolbar();
+        toolbar=getToolbar();
         initUI();
         initAdapter();
     }
 
-//    @Override
-//    public int getLayoutRes() {
-//        return R.layout.activity_main_tab;
-//    }
-//
-//    @Override
-//    protected String getToolbarTitle() {
-//        return "Hms Sandbox";
-//    }
-//
-//    @Override
-//    protected String getDocumentationLink() {
-//        return "https://developer.huawei.com/en/";
-//    }
+    @Override
+    public int getLayoutRes() {
+        return R.layout.activity_main_tab;
+    }
 
-    private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar_main);
+    @Override
+    protected String getToolbarTitle() {
+        return "Hms Sandbox";
+    }
+
+    @Override
+    protected String getDocumentationLink() {
+        return "https://developer.huawei.com/en/";
+    }
+
+
+/*    private void setupToolbar() {
+        toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-    }
+        Util.setToolbar(this, toolbar, "https://developer.huawei.com/en/");
+
+    }*/
 
     private void initUI(){
         tabLayout = findViewById(R.id.tl_main);
@@ -93,10 +99,13 @@ public class MainActivityTab extends AppCompatActivity {
         viewPager.setAdapter(new BaseViewPagerAdapter(MainActivityTab.this.getSupportFragmentManager(), getLifecycle()));
 
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout,viewPager,true, (tab, position) -> {
-            if (position == 0)
+            if (position == 0){
                 tab.setText("Hms Core");
-            else if (position == 1)
+            }
+
+            else if (position == 1){
                 tab.setText("AGC");
+            }
 
         });
         tabLayoutMediator.attach();
@@ -147,7 +156,7 @@ public class MainActivityTab extends AppCompatActivity {
         }
 
         if(id == R.id.ivInfo){
-
+            Toast.makeText(this,"info tiklandi",Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);

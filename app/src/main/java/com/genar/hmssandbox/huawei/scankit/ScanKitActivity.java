@@ -42,7 +42,6 @@ import androidx.core.app.ActivityCompat;
 
 import com.genar.hmssandbox.huawei.R;
 import com.genar.hmssandbox.huawei.Util;
-import com.genar.hmssandbox.huawei.baseapp.activity.BaseActivity;
 import com.huawei.hms.hmsscankit.ScanUtil;
 import com.huawei.hms.ml.scan.HmsScan;
 import com.huawei.hms.ml.scan.HmsScanAnalyzerOptions;
@@ -105,6 +104,7 @@ public class ScanKitActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onRequestPermissionsResult(int requestCode, String @NotNull [] permissions, int @NotNull [] grantResults) {
 
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults.length < 2 || grantResults[0] != PackageManager.PERMISSION_GRANTED || grantResults[1] != PackageManager.PERMISSION_GRANTED) {
             Log.w(TAG, "onRequestPermissionsResult : grantResults.length < 2 ");
             showMessage();
@@ -231,8 +231,8 @@ public class ScanKitActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case SCAN_BITMAP_REQUEST_CAMERA:
-                Camera camera=null;
-                camera=Camera.open();
+                Camera camera = null;
+                camera = Camera.open();
 
                 Bundle extras = data.getExtras();
                 Bitmap var_Bitmap = (Bitmap) extras.get("data");

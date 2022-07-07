@@ -27,12 +27,5 @@
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="always"
         />
-    <item
-        android:id="@+id/btn_doc"
-        android:title="Documentation"
-        android:icon="@drawable/icon_info"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        app:showAsAction="always"
-        />
     
 </menu>
